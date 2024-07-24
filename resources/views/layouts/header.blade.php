@@ -8,11 +8,8 @@
     <link rel="stylesheet" href="{{ asset('logo/android-icon-36x36.png') }}">
     <title>{{ __('Blog- Favourite Website') }}</title>
     <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Include SweetAlert2 CSS and JS -->
-
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon"
-        href="https://thumbs.dreamstime.com/b/lets-shopping-logo-design-template-cart-icon-designs-134743663.jpg">
+    <link rel="icon" href="https://thumbs.dreamstime.com/b/lets-shopping-logo-design-template-cart-icon-designs-134743663.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
@@ -21,24 +18,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Disable right-click
         document.addEventListener('contextmenu', event => event.preventDefault());
-        
-        // Disable Ctrl+U
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && (event.key === 'u' || event.key === 'U')) {
                 event.preventDefault();
             }
         });
     });
-</script>
+</script> --}}
 <body>
     <div class="container-fluid shadow-container">
         <header class="header-top d-flex justify-content-between align-items-center ">
@@ -59,25 +51,30 @@
                 </div>
             </div>
 
-            <div class= " header-links">
+            <div class="header-links">
                 <ul class="d-flex list-unstyled mb-0 ">
-                    <li class="ms-3"><a href="" class="license">License</a></li>
-                    <li class="ms-3"><a href="" class="pricing">Pricing</a></li>
-                    <li class="ms-3"><a href="" class="template">Get Unlimited Template</a></li>
-                   @if (Auth::check())
-                   <li class="nav-item dropdown">
-                    <form action="{{route('logout')}}" method="post">
-                        @csrf
-                        <button type="submit" class="nav-link ">Logout</button>
-                    </form>
-                   @else
-                </li>
-                   <li class="ms-3"><a href="{{ route('sign_in') }}" class="license"><i class="fa-solid fa-user"></i>
-                    Sign In</a></li>
-                   @endif
-                  
+                    <li class="ms-2"><a href="" class="license">License</a></li>
+                    <li class="ms-2"><a href="" class="pricing">Pricing</a></li>
+                    <li class="ms-2"><a href="" class="template">Get Unlimited Template</a></li>
+                    @if (Auth::check())
+                    <li class="dropdown-profile">
+                        <a class="nav-link dropdown-toggle-profile" id="profile">
+                            {{ strtoupper(substr(Auth::user()->f_name, 0, 1)) . strtoupper(substr(Auth::user()->l_name, 0, 1)) }}
+                        </a>
+                        <div class="dropdown-menu-profile" id="profile-show">
+                            <a class="dropdown-item-profile" href="#">Profile</a>
+                            <a class="dropdown-item-profile" href="{{route('help.center')}}">Help</a>
+                            <a class="dropdown-item-profile" href="#">Account</a>
+                            <form action="{{ route('logout') }}" method="POST" class="m-0">
+                                @csrf
+                                <button type="submit" class=" btn btn-primary mx-3 mb-4 mt-2 dropdown-item-profile">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                    @else
+                    <li class="me-5"><a href="{{ route('sign_in') }}" class="license me-2 fs-6"><i class="fa-solid fa-user"></i> Sign In</a></li>
+                    @endif
                 </ul>
-
             </div>
             <div class="menu-icon" id="menu_icon">
                 <i class="fa fa-bars"></i>
@@ -85,13 +82,11 @@
         </header>
         <nav class="navbar navbar-expand-lg navbar-item-container ms-4">
             <ul class="navbar-nav d-flex flex-wrap justify-content-around w-100">
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                        Stock Video
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Stock Video</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link " href="#">Video Templates</a>
+                    <a class="nav-link" href="#">Video Templates</a>
                     <div class="dropdown-menu">
                         <div class="dropdown-links">
                             <a class="dropdown-link" href="#">Action</a>
@@ -99,9 +94,8 @@
                             <a class="dropdown-link" href="#">Something else here</a>
                         </div>
                     </div>
-
                 </li>
-                <li class="nav-item dropdown"><a class="nav-link ">Music</a>
+                <li class="nav-item dropdown"><a class="nav-link">Music</a>
                     <div class="dropdown-menu">
                         <div class="dropdown-links">
                             <a class="dropdown-link" href="#">Action</a>
@@ -126,13 +120,11 @@
         </nav>
     </div>
 
-
     <div class="container">
         @yield('main-content')
     </div>
-
 </body>
-
+<script src="{{ asset('js/help-center.js') }}"></script>
 <script>
     let idleTime = 0;
 
@@ -153,8 +145,21 @@
     function resetTimer() {
         idleTime = 0;
     }
-</script>
 
+    
+</script>
+<script>
+$("#profile").click(function() {
+                $("#profile-show").toggle("show");
+                return false;
+            });
+
+            $(window).click(function(event) {
+        if (!$(event.target).closest('.dropdown-profile').length) {
+            $(".dropdown-menu-profile").hide();
+        }
+    });
+</script>
 <script>
     let menu_icon = document.getElementById('menu_icon');
 </script>
