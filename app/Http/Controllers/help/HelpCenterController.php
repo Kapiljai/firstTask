@@ -13,4 +13,6 @@ class HelpCenterController extends Controller
     {
         return view('help.help-center');
     }
+
+    
 }
