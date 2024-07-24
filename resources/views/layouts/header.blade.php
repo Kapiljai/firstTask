@@ -68,16 +68,8 @@
                    <li class="nav-item dropdown">
                     <form action="{{route('logout')}}" method="post">
                         @csrf
-                        <button type="submit" class="nav-link ">Video Templates</button>
+                        <button type="submit" class="nav-link ">Logout</button>
                     </form>
-                    
-                    <div class="dropdown-menu">
-                        <div class="dropdown-links">
-                            <a class="dropdown-link" href="#">Action</a>
-                            <a class="dropdown-link" href="#">Another action</a>
-                            <a class="dropdown-link" href="#">Something else here</a>
-                        </div>
-                    </div>
                    @else
                    <li class="ms-3"><a href="{{ route('sign_in') }}" class="license"><i class="fa-solid fa-user"></i>
                     Sign In</a></li>
