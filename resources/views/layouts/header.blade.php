@@ -71,6 +71,7 @@
                         <button type="submit" class="nav-link ">Logout</button>
                     </form>
                    @else
+                </li>
                    <li class="ms-3"><a href="{{ route('sign_in') }}" class="license"><i class="fa-solid fa-user"></i>
                     Sign In</a></li>
                    @endif
