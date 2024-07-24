@@ -20,7 +20,19 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/66a0eb1332dca6db2cb47dda/1i3i9cht6';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('contextmenu', event => event.preventDefault());
