@@ -23,7 +23,21 @@ class User extends Authenticatable
         'password',
         'f_name',
         'l_name',
-        'device_identifier'
+        'device_identifier',
+        'address', 
+        'image', 
+        'city', 
+        'type', 
+        'gender', 
+        'birth', 
+        'state',
+         'country', 
+         'mobile_no', 
+         'linkedin', 
+         'instagram', 
+         'facebook', 
+         'twitter', 
+         'github',
     ];
 
     /**

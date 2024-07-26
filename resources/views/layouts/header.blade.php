@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('logo/android-icon-36x36.png') }}">
-    <title>{{ __('Blog- Favourite Website') }}</title>
+    <title>@yield('title', 'Blog- Favourite Website')</title>
     <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -24,7 +24,7 @@
          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -34,7 +34,7 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-</script>
+</script> --}}
     <!--End of Tawk.to Script-->
 {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -76,10 +76,11 @@
                         <a class="nav-link dropdown-toggle-profile" id="profile">
                             {{ strtoupper(substr(Auth::user()->f_name, 0, 1)) . strtoupper(substr(Auth::user()->l_name, 0, 1)) }}
                         </a>
-                        <div class="dropdown-menu-profile" id="profile-show">
-                            <a class="dropdown-item-profile" href="#">Profile</a>
-                            <a class="dropdown-item-profile" href="{{route('help.center')}}">Help</a>
+                        <div class="dropdown-menu-profile mt-2" id="profile-show">
+                            <a class="dropdown-item-profile" href="{{route('user.profile')}}">Profile</a>
                             <a class="dropdown-item-profile" href="#">Account</a>
+                            <a class="dropdown-item-profile" href="#">Setting</a>
+                            <a class="dropdown-item-profile" href="{{route('help.center')}}">Help</a>
                             <form action="{{ route('logout') }}" method="POST" class="m-0">
                                 @csrf
                                 <button type="submit" class=" btn btn-primary mx-3 mb-4 mt-2 dropdown-item-profile">Logout</button>

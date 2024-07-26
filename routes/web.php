@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\help\HelpCenterController;
+use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\ValiDationScriptController;
 
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,8 @@ Route::middleware(['redirect.user'])->group(function () {
 Route::middleware(['auth' ])->group(function () {
     Route::post('logout',[RegisterController::class,'logout'])->name('logout');  
     Route::get('/help-center', [HelpCenterController::class, 'index'])->name('help.center');
+    Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/user/profile/update/{id}', [ProfileController::class, 'user_profile_update'])->name('user.profile.update');
 });
 Route::get('/song',[ValiDationScriptController::class,'songAdd']);
 Route::get('/u',[ValiDationScriptController::class,'valiForm']);
