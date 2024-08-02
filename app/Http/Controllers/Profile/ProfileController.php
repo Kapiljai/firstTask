@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -42,7 +43,7 @@ class ProfileController extends Controller
                 $user->id = $request->user_id;
                 $user->image = $imageName;
                 $user->save();
-     
+     Alert::success('Image uploaded and saved successfully!');
                 return response()->json(['message' => 'Image uploaded and saved successfully!']);
             }
      

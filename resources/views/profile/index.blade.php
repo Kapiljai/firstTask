@@ -2,10 +2,10 @@
 @section('title', 'User Profile')
 @section('main-content')
     <section style="background-color: #eee;">
-        <div class="container py-5">
+        <div class="container mt-3">
             <div class="row">
                 <div class="col">
-                    <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                    <nav aria-label="breadcrumb" class="rounded-3 p-3 mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page"> / User Profile</li>
@@ -30,9 +30,9 @@
                                             class="rounded-circle img-fluid" style="width: 150px;">
                                     @endif
                                 </div>
-                                <h5 class="my-3">John Smith</h5>
-                                <p class="text-muted mb-1">Full Stack Developer</p>
-                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                <h5 class="my-3">{{ucwords($user->name)}}</h5>
+                                <p class="text-muted mb-1">{{ucwords($user->position)}}</p>
+                                <p class="text-muted mb-4">{{ucwords($user->address)}}</p>
                                 <div class="d-flex justify-content-between mb-2">
                                     <button type="button" data-mdb-button-init data-mdb-ripple-init
                                         class="btn btn-primary">Follow</button>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4 mb-lg-0">
+                        <div class="card mb-1 mb-lg-0">
                             <div class="card-body p-0">
                                 <ul class="list-group list-group-flush rounded-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -129,77 +129,52 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4 mb-md-0">
-                                    <div class="card-body">
-                                        <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span>
-                                            Project Status
-                                        </p>
-                                        <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 72%"
-                                                aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 89%"
-                                                aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                        <div class="progress rounded mb-2" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 66%"
-                                                aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+
+                        {{-- change password --}}
+                        <div class="p-1 mb-2">
+                        <div class="card  p-1">
+                            <div class="shadow p-2 change-password ">
+                                <div class="text-center">Change Password</div>
+                            </div>
+                            <form action="" id="changePassword" method="post">
+                            <div class="card-body mt-3">
+                                <div class="row mb-3 change-password-input">
+                                    <div class="col-sm-3">
+                                        <label for="oldPassword" class="mt-2">Old Password</label>
+                                    </div>
+                                    <div class="col-sm-9 change-password-input">
+                                        <input type="password" class="form-control" id="oldPassword" placeholder="Enter Old Password">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card mb-4 mb-md-0">
-                                    <div class="card-body">
-                                        <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span>
-                                            Project Status
-                                        </p>
-                                        <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 72%"
-                                                aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 89%"
-                                                aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                        <div class="progress rounded" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                        <div class="progress rounded mb-2" style="height: 5px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 66%"
-                                                aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                <hr>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <label for="newPassword" class="mt-2">New Password</label>
+                                    </div>
+                                    <div class="col-sm-9 change-password-input">
+                                        <input type="password" class="form-control" id="newPassword" name="password" placeholder="Enter New Password">
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <label for="repeatPassword" class="mt-2">Repeat Password</label>
+                                    </div>
+                                    <div class="col-sm-9 change-password-input">
+                                        <input type="password" class="form-control" id="repeatPassword" placeholder="Enter Repeat Password">
+                                    </div>
+                                </div>
+                               
+                               <div class="change-password-button mt-3 d-flex justify-content-end">
+                                <button class="btn btn-success" type="button" id="button">Save Changes</button>
+                               </div>
                             </div>
+                        </form>
                         </div>
                     </div>
+                    </div>
+
+                    
                 </div>
             </form>
         </div>
@@ -208,7 +183,7 @@
     <script>
         function previewAndUploadImage(event) {
             var file = event.target.files[0];
-            console.log(file); // Debug the file object
+            console.log(file); 
 
             if (!file) {
                 console.log('No file selected.');
@@ -233,13 +208,27 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $('#success-message').html('<div class="alert alert-success">' + response.message +
-                        '</div>');
-                },
-                error: function(response) {
-                    $('#success-message').html('<div class="alert alert-danger">Image upload failed.</div>');
-                }
+            Swal.fire({
+                icon: 'success',
+                title: 'Image Uploaded',
+                text: response.message,
+                confirmButtonText: 'OK'
+            });
+        },
+        error: function(response) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Upload Failed',
+                text: 'Image upload failed. Please try again.',
+                confirmButtonText: 'OK'
             });
         }
+            });
+        }
+    </script>
+    <script>
+        $(document).on('submit' , function(){
+            $('#chanepassword').
+        });
     </script>
 @endsection
