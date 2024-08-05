@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form1;
 use Illuminate\Http\Request;
 use App\Models\user;
 use App\Models\ValiDationScript;
@@ -97,6 +98,31 @@ class ValiDationScriptController extends Controller
             'data' => $data
         ];
         return response()->json($response, 201);
+    }
+
+    public function show_accordian()
+    {
+        return view('accordian.accordian');
+    }
+
+    public function show_accordian_submit(Request $request)
+    {
+        // Validate the input data for all forms
+        $validatedData = $request->validate([
+            'form1_field' => 'nullable|string|max:255',
+            'form2_field' => 'nullable|string|max:255',
+            'form3_field' => 'nullable|string|max:255',
+            'form4_field' => 'nullable|string|max:255',
+            'form5_field' => 'nullable|string|max:255',
+        ]);
+
+        // Create or update the entry in the database
+        Form1::updateOrCreate(
+            ['id' => $request->input('id')], // Assumes there is an ID to identify the record, adjust if needed
+            $validatedData
+        );
+
+        return redirect()->back()->with('success', 'Forms submitted successfully');
     }
 
 }

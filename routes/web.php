@@ -20,9 +20,13 @@ Route::middleware(['auth' ])->group(function () {
     Route::post('logout',[RegisterController::class,'logout'])->name('logout');  
     Route::get('/help-center', [HelpCenterController::class, 'index'])->name('help.center');
     Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('change-password/{id}', [ProfileController::class, 'changePassword'])->name('user.change.password');
     Route::post('/user/profile/update/{id}', [ProfileController::class, 'user_profile_update'])->name('user.profile.update');
 });
 Route::get('/song',[ValiDationScriptController::class,'songAdd']);
 Route::get('/u',[ValiDationScriptController::class,'valiForm']);
 // Route::post('/re',[ValiDationScriptController::class,'store'])->name('store');
 Route::get('/show',[ValiDationScriptController::class,'show']);
+
+Route::get('/show-accordian',[ValiDationScriptController::class,'show_accordian']);
+Route::post('/submit',[ValiDationScriptController::class,'show_accordian_submit']);

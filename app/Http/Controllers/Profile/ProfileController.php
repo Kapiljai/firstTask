@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -53,6 +54,37 @@ class ProfileController extends Controller
             Log::error('Image upload failed: ' . $e->getMessage());
             return response()->json(['message' => 'Image upload failed: ' . $e->getMessage()], 500);
         }
+    }
+
+    // public function changePassword(Request $request, $userId)
+    // {
+    //     // $request->validate([
+    //     //     'old_password' => 'required',
+    //     //     'password' => 'required|min:8|confirmed',
+    //     // ]);
+
+    //     $user = Auth::user();
+
+    //     if (!Hash::check($request->old_password, $user->password)) {
+    //         return response()->json(['message' => 'Current password does not match'], 400);
+    //     }
+
+    //     $user->password = Hash::make($request->password);
+    //     $user->save();
+
+    //     return response()->json(['message' => 'Password changed successfully'], 200);
+    // }
+
+    public function changePassword(Request $request , $id)
+    {
+        $user = Auth::user();
+        if(!Hash::check($request->current_password , $user->password))
+        {
+            return response()->json(['message' => 'Current password does not match'], 400);
+        }
+        $user->password = $request->new_password;
+        $user->save();
+        return response()->json(['message' => 'Password successfully updated'], 200);
     }
  }
 
