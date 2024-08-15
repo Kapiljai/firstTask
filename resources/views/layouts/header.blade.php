@@ -74,21 +74,28 @@
                     @if (Auth::check())
                     <li class="dropdown-profile">
                         <a class="nav-link dropdown-toggle-profile" id="profile">
-                            {{ strtoupper(substr(Auth::user()->f_name, 0, 1)) . strtoupper(substr(Auth::user()->l_name, 0, 1)) }}
+                            @if (Auth::user()->f_name && Auth::user()->user()->l_name)
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) . strtoupper(substr(Auth::user()->l_name, 0, 1)) }}
+                                
+                            @else
+                            {{Auth::user()->name}}
+                                
+                            @endif
+                            
                         </a>
                         <div class="dropdown-menu-profile mt-2" id="profile-show">
                             <a class="dropdown-item-profile" href="{{route('user.profile')}}">Profile</a>
                             <a class="dropdown-item-profile" href="#">Account</a>
                             <a class="dropdown-item-profile" href="#">Setting</a>
                             <a class="dropdown-item-profile" href="{{route('help.center')}}">Help</a>
-                            <form action="{{ route('logout') }}" method="POST" class="m-0">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">
                                 @csrf
                                 <button type="submit" class=" btn btn-primary mx-3 mb-4 mt-2 dropdown-item-profile">Logout</button>
                             </form>
                         </div>
                     </li>
                     @else
-                    <li class="me-5"><a href="{{ route('sign_in') }}" class="license me-2 fs-6"><i class="fa-solid fa-user"></i> Sign In</a></li>
+                    <li class="me-5"><a href="{{ route('login') }}" class="license me-2 fs-6"><i class="fa-solid fa-user"></i> Sign In</a></li>
                     @endif
                 </ul>
             </div>
@@ -141,29 +148,7 @@
     </div>
 </body>
 <script src="{{ asset('js/help-center.js') }}"></script>
-<script>
-    let idleTime = 0;
 
-    function timerIncrement() {
-        idleTime++;
-        if (idleTime > 19) { // 20 minutes inactivity
-            window.location.href = '/logout'; // Redirect to logout URL
-        }
-    }
-
-    setInterval(timerIncrement, 60000); // 1 minute
-
-    window.onload = function() {
-        document.body.onmousemove = resetTimer;
-        document.body.onkeypress = resetTimer;
-    };
-
-    function resetTimer() {
-        idleTime = 0;
-    }
-
-    
-</script>
 <script>
 $("#profile").click(function() {
                 $("#profile-show").toggle("show");

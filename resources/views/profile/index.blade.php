@@ -94,101 +94,158 @@
                                         <p class="text-muted mb-0">{{ $user->mobile }}</p>
                                     </div>
                                 </div>
-                                <hr>
+                    </form>
+                    <hr>
+                    <div id="office-addresses">
+                        <div class="address-form" data-index="1">
+                            <form action="{{route('user.address')}}" method="post" id="address-form" class="new-form">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Address</p>
+                                        <p class="mt-2">Address</p>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">{{ ucwords($user->address) }}</p>
+                                    <div class="col-sm-9 change-password-input  ">
+                                        <input type="text" id="search_by_map" data-index="1" name="full_address"
+                                            placeholder="Address Search Here..." class="search_by_map form-control">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Social Links Form -->
-                <div class="col-lg-4">
-                    <form>
-                        <div class="card mb-1 mb-lg-0">
-                            <div class="card-body p-0">
-                                <ul class="list-group list-group-flush rounded-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fas fa-globe fa-lg text-warning"></i>
-                                        <p class="mb-0">https://mdbootstrap.com</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-github fa-lg text-body"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                        <p class="mb-0">@mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Change Password Form -->
-                <div class="col-lg-8">
-                    <form id="change-password-form" action="{{ route('user.change.password', $user->id) }}"
-                        method="POST">
-                        @csrf
-                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                        <div class="card p-1 mb-2">
-                            <div class="shadow p-2 change-password text-center">
-                                Change Password
-                            </div>
-                            <div class="card-body mt-3">
-                                <div class="row mb-3">
+                                <div class="row">
                                     <div class="col-sm-3">
-                                        <label for="current_password" class="mt-2">Old Password:</label>
+                                        <p class="mt-2">Country</p>
                                     </div>
-                                    <div class="col-sm-9 change-password-input">
-                                        <input type="password" class="form-control" name="current_password"
-                                            id="current_password" required placeholder="Enter Old Password">
+                                    <div class="col-sm-9 change-password-input  ">
+                                        <input type="text" data-index="1" name="country" id="country" placeholder="Country Here..."
+                                            class="form-control ">
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+                                <div class="row">
                                     <div class="col-sm-3">
-                                        <label for="new_password">New Password:</label>
+                                        <p class="mt-2">State</p>
                                     </div>
-                                    <div class="col-sm-9 change-password-input">
-                                        <input type="password" class="form-control" id="new_password"
-                                            name="new_password" required placeholder="Enter New Password">
+                                    <div class="col-sm-9 change-password-input  ">
+                                        <input type="text"  data-index="1" name="state" id="state" placeholder="State Here..."
+                                            class="form-control ">
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+                                <div class="row">
                                     <div class="col-sm-3">
-                                        <label for="repeatpassword" class="mt-2">Repeat Password:</label>
+                                        <p class="mt-2">City</p>
                                     </div>
-                                    <div class="col-sm-9 change-password-input">
-                                        <input type="password" class="form-control" name="repeatpassword"
-                                            id="repeatpassword" required placeholder="Enter Repeat Password">
+                                    <div class="col-sm-9 change-password-input  ">
+                                        <input type="text"  data-index="1" name="city" id="city" placeholder="City Here..."
+                                            class="form-control ">
                                     </div>
                                 </div>
-                                <div class="change-password-button mt-3 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-success">Save Changes</button>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mt-2">Zip Code</p>
+                                    </div>
+                                    <div class="col-sm-9 change-password-input  ">
+                                        <input type="text"  data-index="1" name="zipcode" id="ZipCode"
+                                            placeholder="Zipcode Here..." class="form-control ">
+                                    </div>
                                 </div>
-                            </div>
+                                <input type="submit" value="Submit" class="btn btn-success address-btn btn-sm">
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-12 d-flex justify-content-between ad-more">
+                            <span class="address">
+                                Add More Address
+                            </span>
+                            <span class="plus-icon-head" id="add-more-head">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </div>
+                    </div>
 
+                </div>
             </div>
+
+        </div>
+
+        <!-- Social Links Form -->
+        <div class="col-lg-4">
+            <form>
+                <div class="card mb-1 mb-lg-0">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">https://mdbootstrap.com</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg text-body"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                <p class="mb-0">@mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Change Password Form -->
+        <div class="col-lg-8">
+            <form id="change-password-form" action="{{ route('user.change.password', $user->id) }}" method="POST">
+                @csrf
+                <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                <div class="card p-1 mb-2">
+                    <div class="shadow p-2 change-password text-center">
+                        Change Password
+                    </div>
+                    <div class="card-body mt-3">
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="current_password" class="mt-2">Old Password:</label>
+                            </div>
+                            <div class="col-sm-9 change-password-input">
+                                <input type="password" class="form-control" name="current_password"
+                                    id="current_password" required placeholder="Enter Old Password">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="new_password">New Password:</label>
+                            </div>
+                            <div class="col-sm-9 change-password-input">
+                                <input type="password" class="form-control" id="new_password" name="new_password"
+                                    required placeholder="Enter New Password">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="repeatpassword" class="mt-2">Repeat Password:</label>
+                            </div>
+                            <div class="col-sm-9 change-password-input">
+                                <input type="password" class="form-control" name="repeatpassword" id="repeatpassword"
+                                    required placeholder="Enter Repeat Password">
+                            </div>
+                        </div>
+                        <div class="change-password-button mt-3 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        </div>
         </div>
 
         <script>
@@ -239,15 +296,12 @@
 
         <script>
             $(document).ready(function() {
-                console.log('Document is ready');
                 $('#change-password-form').on('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submit event triggered');
                     var userId = $('#user_id').val();
                     var formData = new FormData(this);
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     formData.append('_token', csrfToken);
-                    console.log('Sending AJAX request to /change-password/' + userId);
                     $.ajax({
                         url: "{{ route('user.change.password', ['id' => Auth::user()->id]) }}",
                         method: 'POST',
@@ -286,5 +340,247 @@
                 });
             });
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVJSBxE9KQfA9pbBmfgZQ-wKKWwNz_6YA&loading=async&libraries=places&callback=initMap" async defer></script>
+        <script>
+            let index = 1;
+            let autocompleteInstances = [];
+            function initMap() {
+                if (typeof google === 'undefined' || !google.maps || !google.maps.places) {
+                    console.error('Google Maps API not loaded');
+                    return;
+                    }
+                document.querySelectorAll('input.search_by_map').forEach((input) => {
+                    let index = input.getAttribute('data-index');
+                    if (input) {
+                        let autocomplete = new google.maps.places.Autocomplete(input);
+                        autocompleteInstances[index] = autocomplete;
+
+                        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                            handlePlaceChanged(autocomplete, index);
+                        });
+                    }
+                });
+            }
+
+            function handlePlaceChanged(autocomplete, index) {
+                try {
+                    let place = autocomplete.getPlace();
+                    if (!place.geometry) {
+                        console.log("No details available for input: '" + autocomplete.getPlace().name + "'");
+                        return;
+                    }
+
+                    let addressComponents = place.address_components;
+                    let country = addressComponents.find(component => component.types.includes('country'));
+                    if (country) {
+                        document.querySelector(`input[name="country"][data-index="${index}"]`).value = country.long_name;
+                    }
+
+                    let state = addressComponents.find(component => component.types.includes('administrative_area_level_1'));
+                    if (state) {
+                        document.querySelector(`input[name="state"][data-index="${index}"]`).value = state.long_name;
+                    }
+
+                    let city = addressComponents.find(component => component.types.includes('locality'));
+                    if (city) {
+                        document.querySelector(`input[name="city"][data-index="${index}"]`).value = city.long_name;
+                    }
+
+                    let postalCode = addressComponents.find(component => component.types.includes('postal_code'));
+                    if (postalCode) {
+                        document.querySelector(`input[name="zipcode"][data-index="${index}"]`).value = postalCode.long_name;
+                    }
+
+                    document.querySelector(`input[name="full_address"][data-index="${index}"]`).value = place.formatted_address;
+                } catch (error) {
+                    console.error('Error handling place details:', error);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                initMap();
+            });
+            document.getElementById('add-more-head').addEventListener('click', function() {
+                index++;
+                let newForm = `
+                <div class="address-form_${index} address-form" id="address-form_${index}" data-index="${index}">
+                    <form action="{{route('user.address')}}" method="post" id='address-form-${index}''>
+                    @csrf
+                    <div id ="message"></div>
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                         <div class="row">
+                     <div class ="col-lg-12 d-flex justify-content-between" >
+                    <span>Address ${index}</span>
+                       <span style="cursor:pointer;" class="delete-address delete-address-icon text-red fs-6 float-end " data-index="${index}">
+                                <i class="fas fa-trash-alt text-danger"></i>
+                        </span>
+               </div>
+                </div>
+
+
+
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <p class="mt-2">Address</p>
+                    </div>
+                    <div class="col-sm-9 change-password-input">
+                        <input type="text" id="search_by_map_${index}" data-index="${index}" name="full_address"
+                            placeholder="Address Search Here..." class="search_by_map form-control">
+                    </div>
+                </div>
+
+                
+
+
+              
+
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mt-2">Country</p>
+                    </div>
+                    <div class="col-sm-9 change-password-input">
+                        <input type="text" name="country" data-index="${index}" id="country_${index}" placeholder="Country Here..."
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mt-2">State</p>
+                    </div>
+                    <div class="col-sm-9 change-password-input">
+                        <input type="text" name="state" data-index="${index}" id="state_${index}" placeholder="State Here..."
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mt-2">City</p>
+                    </div>
+                    <div class="col-sm-9 change-password-input">
+                        <input type="text" name="city" data-index="${index}" id="city_${index}" placeholder="City Here..."
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mt-2">Zip Code</p>
+                    </div>
+                    <div class="col-sm-9 change-password-input">
+                        <input type="text" name="zipcode" data-index="${index}" id="zipcode_${index}"
+                            placeholder="Zipcode Here..." class="form-control">
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-success address-btn btn-sm">
+            </form>
+        </div>
+    `;
+                document.getElementById('office-addresses').insertAdjacentHTML('beforeend', newForm);
+                initMap(); 
+
+                    $(document).on('click', '.delete-address', function() {
+                    let index = $(this).data('index');
+                    $(`.address-form_${index}`).remove();
+                });
+            });       
+
+                    $(document).ready(function() {
+                    $(document).on('submit', 'form', function(e) {
+                        e.preventDefault(); 
+                        var form = $(this);
+                        let formData = new FormData(this); 
+                        formData.append('user_id', '{{ $user->id }}');
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                        formData.append('_token', csrfToken);
+
+                        $.ajax({
+                                url: "{{route('user.address')}}", 
+                                type: "POST",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'User Address Successfully Stored',
+                                        text: response.message,
+                                        confirmButtonText: 'OK'
+                                    });
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                var response = jqXHR.responseJSON;
+                                var errorMessage = response.message ||
+                                    'Something went wrong. Please try again.';
+
+                                if (response.errors) {
+                                    $.each(response.errors, function(key, value) {
+                                        errorMessage += value + '<br>';
+                                    });
+                                }
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Update Failed',
+                                    html: errorMessage,
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+
+                        });
+                    });
+                 
+         });
+        </script>
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#address-form').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            formData.append('user_id' , '{{Auth::user()->id}}');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            formData.append('_token', csrfToken);
+            $.ajax({
+                url: "{{ route('user.address')}}",
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User Address Successfully Stored',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    var response = jqXHR.responseJSON;
+                    var errorMessage = response.message ||
+                        'Something went wrong. Please try again.';
+
+                    if (response.errors) {
+                        $.each(response.errors, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                    }
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Update Failed',
+                        html: errorMessage,
+                        confirmButtonText: 'OK'
+                    });
+                }
+
+            });
+        });
+    });
+</script>
     </section>
 @endsection

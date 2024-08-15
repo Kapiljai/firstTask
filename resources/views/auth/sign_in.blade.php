@@ -27,7 +27,7 @@
             </div>
             <div class="header-links">
                 <ul class="list-unstyled mb-0">
-                    <li class="ms-3" style="text-decoration: none;"><a href="{{ route('sign_in') }}" class="license"
+                    <li class="ms-3" style="text-decoration: none;"><a href="{{ route('login') }}" class="license"
                             style="text-decoration: none;"><i class="fa-solid fa-user"></i> Sign In</a></li>
                 </ul>
 
@@ -65,7 +65,7 @@
                                 </a>
                             </div>
                             <div class="social-login">
-                                <a href="#" class="google btn"><span class=" mx-1"><i class="fa-brands fa-google-plus-g"></i>
+                                <a href="{{route('google.login')}}" class="google btn"><span class=" mx-1"><i class="fa-brands fa-google-plus-g"></i>
                                 </span>Login with Google+
                                 </a>
                             </div>

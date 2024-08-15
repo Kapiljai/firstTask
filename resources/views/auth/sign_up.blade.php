@@ -30,7 +30,7 @@
             </div>
             <div class="header-links">
                 <ul class="list-unstyled mb-0">
-                    <li class="ms-3" style="text-decoration: none;"><a href="{{ route('sign_in') }}" class="license"
+                    <li class="ms-3" style="text-decoration: none;"><a href="{{ route('login') }}" class="license"
                             style="text-decoration: none;"><i class="fa-solid fa-user"></i> Sign In</a></li>
                 </ul>
 
@@ -68,7 +68,7 @@
                             </a>
                         </div>
                         <div class="social-login">
-                            <a href="#" class="google btn"><span class="mx-1"><i
+                            <a href="{{route('google.login')}}" class="google btn"><span class="mx-1"><i
                                         class="fa-brands fa-google-plus-g"></i>
                                 </span>Login with Google+
                             </a>
@@ -139,7 +139,7 @@
                     </form>
                     <div class="links d-flex mt-2 mx-3 mb-2">
                         <span class="text-dark f-w-5">Already have an Favourite Blog Account?</span> <a
-                            href="{{ route('sign_in') }}"> Sign in here.</a>
+                            href="{{ route('login') }}"> Sign in here.</a>
                     </div>
                     <div class=" form-group mt-2 para">
                         <span>Favourite Blog collects and uses personal data in accordance with our</span>
