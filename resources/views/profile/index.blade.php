@@ -98,7 +98,8 @@
                     <hr>
                     <div id="office-addresses">
                         <div class="address-form" data-index="1">
-                            <form action="{{route('user.address')}}" method="post" id="address-form" class="new-form">
+                            <div id="message"></div>
+                            <form  id="address-form" class="user-profile">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <div class="row">
@@ -142,7 +143,7 @@
                                         <p class="mt-2">Zip Code</p>
                                     </div>
                                     <div class="col-sm-9 change-password-input  ">
-                                        <input type="text"  data-index="1" name="zipcode" id="ZipCode"
+                                        <input type="text"  data-index="1" name = "zipcode" id = "zipcode"
                                             placeholder="Zipcode Here..." class="form-control ">
                                     </div>
                                 </div>
@@ -404,8 +405,8 @@
             document.getElementById('add-more-head').addEventListener('click', function() {
                 index++;
                 let newForm = `
-                <div class="address-form_${index} address-form" id="address-form_${index}" data-index="${index}">
-                    <form action="{{route('user.address')}}" method="post" id='address-form-${index}''>
+                <div class='address-form_${index} address-form' id='address-form_${index}' data-index="${index}">
+                    <form  id='address-form-${index} class='address-form-dynamically'>
                     @csrf
                     <div id ="message"></div>
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -485,61 +486,17 @@
                 });
             });       
 
-                    $(document).ready(function() {
-                    $(document).on('submit', 'form', function(e) {
-                        e.preventDefault(); 
-                        var form = $(this);
-                        let formData = new FormData(this); 
-                        formData.append('user_id', '{{ $user->id }}');
-                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
-                        formData.append('_token', csrfToken);
 
-                        $.ajax({
-                                url: "{{route('user.address')}}", 
-                                type: "POST",
-                                data: formData,
-                                processData: false,
-                                contentType: false,
-                                success: function(response) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'User Address Successfully Stored',
-                                        text: response.message,
-                                        confirmButtonText: 'OK'
-                                    });
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                var response = jqXHR.responseJSON;
-                                var errorMessage = response.message ||
-                                    'Something went wrong. Please try again.';
-
-                                if (response.errors) {
-                                    $.each(response.errors, function(key, value) {
-                                        errorMessage += value + '<br>';
-                                    });
-                                }
-
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Update Failed',
-                                    html: errorMessage,
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-
-                        });
-                    });
-                 
-         });
+          
         </script>
 
 
 
 
 
-<script>
+{{-- <script>
     $(document).ready(function() {
-        $('#address-form').on('submit', function(e) {
+        $('#address-form').click('submit', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             formData.append('user_id' , '{{Auth::user()->id}}');
@@ -579,6 +536,61 @@
                 }
 
             });
+        });
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function(){
+        $('#address-form').on('submit', function(e){
+            e.preventDefault();
+            
+            var address = $('#search_by_map').val();
+            var country = $('#country').val();
+            var state = $('#state').val();
+            var zipcode = $('#zipcode').val();
+            var city =  $('#city').val();
+            if(address=="" || country=="" || state=="" || zipcode==""||city==""){
+                $('#message').fadeIn();
+                $('#message').removeClass('success-msg').addClass('error-msg').html('All fields must be required.');
+            }
+            else{
+                $.ajax({
+                    url:"{{route('user.address')}}",
+                    type:"POST",
+                    data:$('#address-form').serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },                 
+                    success:function(response){
+                        // $('#message').html($('#address-form').serialize());
+                        // html me data print krne ke liye iska use kiya h 
+                        Swal.fire({
+                            icon:"success",
+                            title:"User Address",
+                            text:response.message,
+                            confirmButtonText:"OK"
+                        });
+                        console.log("sucess", response);
+
+                    },
+                    error:function(xhr){
+                        Swal.fire({
+                            icon:"error",
+                            title:"Something Else",
+                            text: xhr.responseJSON.message || "An error occurred",
+                            confirmButtonText:"OK"
+                        });
+                        console.log("error", country);
+                        console.log("error", state);
+                        console.log("error", zipcode);
+                        console.log("error", city);
+                        console.log("error", address);
+                        console.log("error", xhr);
+                    }
+                });
+            }
+
         });
     });
 </script>

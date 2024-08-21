@@ -294,6 +294,54 @@ body {
     color: #000;
     outline: none;
     border: none;
+    margin-left: 70px;
+}
+
+
+
+ .icon.valid-icon {
+    position: absolute;
+    right: 60px;
+    top: 70%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    display: none;
+}
+
+ .icon.error-icon {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    display: none;
+}
+
+
+ .icon.valid-icon {
+    display: flex;
+    background-color: green;
+    color: #fff;
+
+}
+
+.icon.error-icon {
+    display: flex;
+    background-color: red;
+    color: white;
+
 }
 
 

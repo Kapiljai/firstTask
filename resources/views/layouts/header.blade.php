@@ -88,7 +88,7 @@
                             <a class="dropdown-item-profile" href="#">Account</a>
                             <a class="dropdown-item-profile" href="#">Setting</a>
                             <a class="dropdown-item-profile" href="{{route('help.center')}}">Help</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">
+                            <form  action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit" class=" btn btn-primary mx-3 mb-4 mt-2 dropdown-item-profile">Logout</button>
                             </form>
